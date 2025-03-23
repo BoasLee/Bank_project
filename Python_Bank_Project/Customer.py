@@ -1,7 +1,7 @@
 import Person
 
 class Customer(Person.Person):
-    def __init__(self, first_name, last_name, address, customer_id, accounts = set()):
+    def __init__(self, first_name, last_name, address, customer_id):
         """
         This class represents a customer and is a sub class of class Person.
 
@@ -10,7 +10,7 @@ class Customer(Person.Person):
         """
         super().__init__(first_name, last_name, address)
         self._customer_id = customer_id
-        self._accounts = accounts
+        self._accounts = set()
 
     @property
     def customer_id(self):

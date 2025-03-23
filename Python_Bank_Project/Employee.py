@@ -1,7 +1,7 @@
 import Person
 
 class Employee(Person.Person):
-    def __init__(self, first_name, last_name, address, employee_id, salary = None):
+    def __init__(self, first_name, last_name, address, employee_id, salary):
         """
         This class represents an Employee and is a sub class of class Person.
 

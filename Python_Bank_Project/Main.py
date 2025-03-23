@@ -1,14 +1,12 @@
-import Customer
-import Employee
+import Bank
 
+my_bank = Bank.Bank()
+my_bank.add_employee("boas","lee", "123", 200)
+my_bank.add_customer("abc","abc", "123")
+my_bank.add_account(1)
+my_bank.add_service(1)
 
-my_person = Employee.Employee("Boas","Lee","123 street",1,500)
-
-print(my_person.address)
-print(my_person.first_name)
-print(my_person.last_name)
-
-print(my_person.salary)
-print(my_person.employee_id)
-
-
+my_bank.display_all_customers()
+my_bank.display_all_employees()
+my_bank.display_all_accounts()
+my_bank.display_all_services()
