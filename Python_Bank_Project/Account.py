@@ -5,8 +5,13 @@ class Account:
         self._customers = set()
         self._balance = 0
 
+        self.add_customer(customer_id)
+
+    def add_customer(self, customer_id):
         self._customers.add(customer_id)
 
+    def remove_customer(self, customer_id):
+        self._customers.discard(customer_id)
     def get_customers(self):
         return self._customers
 
@@ -30,3 +35,4 @@ class Account:
             return None
         else:
             self._balance -= amount
+

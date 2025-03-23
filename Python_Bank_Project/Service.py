@@ -6,6 +6,9 @@ class Service:
         self._interest_rate = interest_rate
         self._balance = 0
 
+        self._add_customer(customer_id)
+
+    def add_customer(self, customer_id):
         self._customers.add(customer_id)
 
     def get_customers(self):

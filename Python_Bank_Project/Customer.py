@@ -19,7 +19,7 @@ class Customer(Person.Person):
     def accounts(self):
         return self._accounts
 
-    def add_account(self,account_id):
+    def add_account(self, account_id):
         self._accounts.add(account_id)
 
     def remove_account(self,account_id):
