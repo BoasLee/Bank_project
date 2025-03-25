@@ -26,10 +26,12 @@ class Bank:
         :param last_name: employee's last time
         :param address: employee's address
         :param salary: employee's salary
+        :return: employee instance created
         """
         new_employee_id = len(self._employees) + 1
         new_employee = Employee.Employee(first_name, last_name, address, new_employee_id, salary)
         self._employees.add(new_employee)
+        return new_employee
 
     def add_customer(self, first_name, last_name, address):
         """
@@ -38,10 +40,13 @@ class Bank:
         :param first_name: customer's first name
         :param last_name: customer's last time
         :param address: customer's address
+        :return: customer instance created
         """
         new_customer_id = len(self._customers) + 1
         new_customer = Customer.Customer(first_name, last_name, address, new_customer_id)
         self._customers.add(new_customer)
+        return new_customer
+
 
     def add_account(self, customer_id, account_type="checking"):
         """
@@ -49,21 +54,22 @@ class Bank:
 
         :param customer_id: customer's id that is associated with this account
         :param account_type: desired account type (checking, saving)
+        :return: account instance created (or none if failed)
         """
         if self._validating_customer_id(customer_id) is not None:
             new_account_id = len(self._accounts) + 1
             new_account = Account.Account(new_account_id, customer_id, account_type)
             self._accounts.add(new_account)
-            return True
+            return new_account
         else:
-            return False
+            return None
 
     def _validating_customer_id(self, customer_id):
         """
         Checking to see if a customer exsist in the bank
 
         :param customer_id: customer id that is being checking
-        :return: returns customer  object if account exsists else, None
+        :return: returns customer object if account exsists else, None
         """
         for customer in self._customers:
             if customer.customer_id == customer_id:
@@ -77,7 +83,7 @@ class Bank:
 
         :param customer_id: customer id
         :param account_id: account id
-        :return:
+        :return: tre if customer was removed, false if customer was not removed
         """
         account = self._validating_Account_id(account_id)
         customer = self._validating_customer_id(customer_id)
@@ -137,15 +143,15 @@ class Bank:
         :param customer_id: customer associated with service
         :param service_type: type of service, "creditcard/loan"
         :param interest_rate: interest rate of the service
-        :return: returns true if the service was added to the bank
+        :return: returns service object if the service was added to the bank
         """
         if self._validating_customer_id(customer_id):
             new_service_id = len(self._services) + 1
             new_service = Service.Service(new_service_id, customer_id, service_type, interest_rate)
             self._services.add(new_service)
-            return True
+            return new_service
         else:
-            return False
+            return None
 
     def display_all_employees(self):
         """
