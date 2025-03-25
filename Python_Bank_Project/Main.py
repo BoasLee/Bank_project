@@ -50,18 +50,21 @@ def create_account(bank):
     :param bank: bank object that holds all the information.
     : return: instance of newly created account
     """
-    print("--Creating Account--")
-    customer_id = int(input("customer_id: "))
-    account_type = input('For Savings account, enter "s" or the account will default to checking: ')
-    if account_type == 's':
-        new_account = bank.add_account(customer_id,"savings")
-    else:
-        new_account = bank.add_account(customer_id)
+    try:
+        print("--Creating Account--")
+        customer_id = int(input("customer_id: "))
+        account_type = input('For Savings account, enter "s" or the account will default to checking: ')
+        if account_type == 's':
+            new_account = bank.add_account(customer_id,"savings")
+        else:
+            new_account = bank.add_account(customer_id)
 
-    if new_account:
-        print("--Account Created--")
-    else:
-        print("--Account NOT Created--")
+        if new_account:
+            print("--Account Created--")
+        else:
+            print("--Account NOT Created--")
+    except ValueError:
+        print("invalid input, please try again")
 
     return new_account
 
@@ -72,19 +75,22 @@ def create_service(bank):
 
     :param bank: bank object that holds all the information.
     """
-    print("--Creating Service--")
-    customer_id = int(input("customer_id: "))
-    service_type = input('For a loan, enter "l" or the service will default to a creditcard: ')
-    if service_type == 'l':
-        new_service = bank.add_account(customer_id, "loan")
-    else:
-        new_service = bank.add_account(customer_id)
+    try:
+        print("--Creating Service--")
+        customer_id = int(input("customer_id: "))
+        service_type = input('For a loan, enter "l" or the service will default to a creditcard: ')
+        if service_type == 'l':
+            new_service = bank.add_account(customer_id, "loan")
+        else:
+            new_service = bank.add_account(customer_id)
 
-    if new_service:
-        print("--Service Created--")
-    else:
-        print("--Service NOT Created--")
-    return new_service
+        if new_service:
+            print("--Service Created--")
+        else:
+            print("--Service NOT Created--")
+        return new_service
+    except ValueError:
+        print("invalid input, please try again")
 
 
 def create_employee(bank):
@@ -94,14 +100,17 @@ def create_employee(bank):
     :param bank: bank object that holds all the information.
     :return: employee object
     """
-    print("--Creating Employee--")
-    first_name = input("First Name: ")
-    last_name = input("Last Name:")
-    address = input("Address:")
-    salary = int(input("salary:"))
-    new_employee = bank.add_employee(first_name, last_name, address, salary)
-    print("--Employee Created--")
-    return new_employee
+    try:
+        print("--Creating Employee--")
+        first_name = input("First Name: ")
+        last_name = input("Last Name:")
+        address = input("Address:")
+        salary = int(input("salary:"))
+        new_employee = bank.add_employee(first_name, last_name, address, salary)
+        print("--Employee Created--")
+        return new_employee
+    except ValueError:
+        print("invalid input, please try again")
 
 
 def add_customer_to_account(bank):
@@ -111,15 +120,18 @@ def add_customer_to_account(bank):
     :param bank: bank object that holds all the information.
     :return: returns true if the customer was added to the account
     """
-    print("--Adding Customer to Account--")
-    customer_id = int(input("customer_id: "))
-    account_id = int(input("account_id: "))
-    result = bank.add_customer_to_account(customer_id, account_id)
-    if result:
-        print("--Customer added to Account--")
-    else:
-        print("--Customer was NOT added to Account--")
-    return result
+    try:
+        print("--Adding Customer to Account--")
+        customer_id = int(input("customer_id: "))
+        account_id = int(input("account_id: "))
+        result = bank.add_customer_to_account(customer_id, account_id)
+        if result:
+            print("--Customer added to Account--")
+        else:
+            print("--Customer was NOT added to Account--")
+        return result
+    except ValueError:
+        print("invalid input, please try again")
 
 
 def remove_customer_from_account(bank):
@@ -129,15 +141,18 @@ def remove_customer_from_account(bank):
     :param bank: bank object that holds all the information.
     :return: returnst true if the customer was removed from account
     """
-    print("--Removing Customer from Account--")
-    customer_id = int(input("customer_id: "))
-    account_id = int(input("account_id: "))
-    result = bank.remove_customer_from_account(customer_id, account_id)
-    if result:
-        print("--Customer was removed from Account--")
-    else:
-        print("--Customer was NOT removed from Account--")
-    return result
+    try:
+        print("--Removing Customer from Account--")
+        customer_id = int(input("customer_id: "))
+        account_id = int(input("account_id: "))
+        result = bank.remove_customer_from_account(customer_id, account_id)
+        if result:
+            print("--Customer was removed from Account--")
+        else:
+            print("--Customer was NOT removed from Account--")
+        return result
+    except ValueError:
+        print("invalid input, please try again")
 
 
 if __name__ == "__main__":
@@ -147,7 +162,10 @@ if __name__ == "__main__":
 with open("Log.txt", "a") as file:
     while user_input != 0:
         display_main_menu()
-        user_input = int(input("Please choose one of the following options:"))
+        try:
+            user_input = int(input("Please choose one of the following options:"))
+        except ValueError:
+            print("invalid input, please try again")
         match user_input:
             case 1:
                 if create_customer(my_bank) is not None:
