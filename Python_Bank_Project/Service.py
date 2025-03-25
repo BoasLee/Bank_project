@@ -1,5 +1,14 @@
 class Service:
     def __init__(self, service_id, customer_id, service_type, interest_rate):
+        """
+        Represents a service for a customer
+
+        :param service_id: service unique identifier
+        :param customer_id: customer associated with service
+        :param service_type: description/type of service
+        :param interest_rate: interest rate for the service
+        """
+
         self._service_id = service_id
         self._service_type = service_type
         self._customers = set()

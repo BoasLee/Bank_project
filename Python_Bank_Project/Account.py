@@ -1,5 +1,12 @@
 class Account:
     def __init__(self, account_id, customer_id, account_type):
+        """
+        Represents an account for a customer
+
+        :param account_id: unique identifier
+        :param customer_id: set of customer(s) id that are associated with this account
+        :param account_type: string describing this account ("checking, saving")
+        """
         self._account_id = account_id
         self._account_type = account_type
         self._customers = set()
@@ -31,6 +38,11 @@ class Account:
         self._balance += amount
 
     def withdraw(self, amount):
+        """
+        withdraws amount from balance.
+
+        :param amount: amount to withdraw
+        """
         if amount > self._balance:
             return None
         else:
